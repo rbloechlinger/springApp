@@ -1,6 +1,6 @@
 package com.romeone.taskExample;
 
-import com.romeone.taskExample.controller.UserRepository;
+import com.romeone.taskExample.model.UserRepository;
 import com.romeone.taskExample.model.User;
 import java.util.Arrays;
 import java.util.List;
@@ -34,28 +34,29 @@ public class TaskExampleApplication {
 
 			System.out.println("Let's inspect the beans provided by Spring Boot:");
 
-			String[] beanNames = ctx.getBeanDefinitionNames();
-			Arrays.sort(beanNames);
-			for (String beanName : beanNames) {
-				System.out.println(beanName);
-			}
+//			String[] beanNames = ctx.getBeanDefinitionNames();
+//			Arrays.sort(beanNames);
+//			for (String beanName : beanNames) {
+//				System.out.println(beanName);
+//			}
 
 		};
 	}
 
 	@EventListener(ApplicationReadyEvent.class)
 	public void runAfterStartup() {
-		queryAllCustomers();
-		createCustomer();
-		queryAllCustomers();
+//		queryAllCustomers();
+//		createCustomer();
+//		queryAllCustomers();
 	}
 
 	private void createCustomer() {
-		User newUser = new User();
-		newUser.setFirstName("John");
-		newUser.setLastName("Doe");
-		logger.info("Saving new customer...");
-		this.repository.save(newUser);
+//		User newUser = new User();
+//		newUser.setFirstName("John");
+//		newUser.setLastName("Doe");
+//		newUser.setCreat
+//		logger.info("Saving new customer...");
+//		this.repository.save(newUser);
 	}
 
 	private void queryAllCustomers() {
