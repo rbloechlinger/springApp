@@ -1,4 +1,4 @@
-package com.romeone.taskExample;
+package com.romeone.taskExample.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class User {
 
     @Id
     @GeneratedValue
@@ -21,7 +21,7 @@ public class Customer {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    public Customer() {
+    public User() {
         super();
     }
 
