@@ -65,7 +65,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/src/main/docker</outputDirectory>
+							<outputDirectory>${basedir}/src/main/docker/app</outputDirectory>
 							<resources>
 								<resource>
 									<directory>${basedir}/target</directory>
