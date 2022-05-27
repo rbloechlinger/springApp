@@ -1,9 +1,5 @@
 package com.romeone.taskExample;
 
-import com.romeone.taskExample.model.UserRepository;
-import com.romeone.taskExample.model.User;
-import java.util.Arrays;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +17,8 @@ public class TaskExampleApplication {
 
 	private final Logger logger = LoggerFactory.getLogger(com.romeone.taskExample.TaskExampleApplication.class);
 
-	@Autowired
-	private UserRepository repository;
+//	@Autowired
+//	private UserRepository repository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TaskExampleApplication.class, args);
@@ -60,7 +56,7 @@ public class TaskExampleApplication {
 	}
 
 	private void queryAllCustomers() {
-		List<User> allUsers = this.repository.findAll();
-		logger.info("Number of customers: " + allUsers.size());
+//		List<User> allUsers = this.repository.findAll();
+//		logger.info("Number of customers: " + allUsers.size());
 	}
 }
