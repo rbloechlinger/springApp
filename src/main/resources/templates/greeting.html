@@ -7,5 +7,7 @@
 <body>
 <p th:text="'Hello, ' + ${name} + '!'" />
 <span th:text="#{welcome.message}" />
+<!--<div th:insert="footer:: (${#strings.contains(name,'world')}  ? #{footer.admin} : #{footer.default})"></div>-->
+<div th:insert="footer::default"></div>
 </body>
 </html>
