@@ -1,13 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <title>Getting Started: Serving Web Content</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+<header th:insert="fragments/general.html :: header"> </header>
 <body>
 <p th:text="'Hello, ' + ${name} + '!'" />
 <span th:text="#{welcome.message}" />
-<!--<div th:insert="footer:: (${#strings.contains(name,'world')}  ? #{footer.admin} : #{footer.default})"></div>-->
 <div th:insert="footer::default"></div>
 </body>
 </html>
