@@ -1,4 +1,4 @@
-package com.romeone.taskExample.model;
+package com.romeone.springapp.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

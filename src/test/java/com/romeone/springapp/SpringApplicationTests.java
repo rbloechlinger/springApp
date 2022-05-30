@@ -1,10 +1,10 @@
-package com.romeone.taskExample;
+package com.romeone.springapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TaskExampleApplicationTests {
+class SpringApplicationTests {
 
 	@Test
 	void contextLoads() {

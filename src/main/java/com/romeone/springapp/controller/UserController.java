@@ -1,8 +1,8 @@
-package com.romeone.taskExample.controller;
+package com.romeone.springapp.controller;
 
-import com.romeone.taskExample.model.CustomUser;
+import com.romeone.springapp.model.CustomUser;
 
-import com.romeone.taskExample.model.CustomUserRepository;
+import com.romeone.springapp.model.CustomUserRepository;
 import java.util.Arrays;
 import java.util.List;
 

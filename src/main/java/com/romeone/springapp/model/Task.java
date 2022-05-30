@@ -1,4 +1,4 @@
-package com.romeone.taskExample.model;
+package com.romeone.springapp.model;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;

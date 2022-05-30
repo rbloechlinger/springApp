@@ -1,4 +1,4 @@
-package com.romeone.taskExample.config;
+package com.romeone.springapp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

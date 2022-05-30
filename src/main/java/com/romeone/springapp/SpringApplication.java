@@ -1,10 +1,8 @@
-package com.romeone.taskExample;
+package com.romeone.springapp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
@@ -13,15 +11,12 @@ import org.springframework.context.event.EventListener;
 
 
 @SpringBootApplication
-public class TaskExampleApplication {
+public class SpringApplication {
 
-	private final Logger logger = LoggerFactory.getLogger(com.romeone.taskExample.TaskExampleApplication.class);
-
-//	@Autowired
-//	private UserRepository repository;
+	private final Logger logger = LoggerFactory.getLogger(SpringApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(TaskExampleApplication.class, args);
+		org.springframework.boot.SpringApplication.run(SpringApplication.class, args);
 	}
 
 	@Bean
@@ -44,19 +39,5 @@ public class TaskExampleApplication {
 //		queryAllCustomers();
 //		createCustomer();
 //		queryAllCustomers();
-	}
-
-	private void createCustomer() {
-//		User newUser = new User();
-//		newUser.setFirstName("John");
-//		newUser.setLastName("Doe");
-//		newUser.setCreat
-//		logger.info("Saving new customer...");
-//		this.repository.save(newUser);
-	}
-
-	private void queryAllCustomers() {
-//		List<User> allUsers = this.repository.findAll();
-//		logger.info("Number of customers: " + allUsers.size());
 	}
 }

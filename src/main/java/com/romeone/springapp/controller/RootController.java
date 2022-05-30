@@ -1,4 +1,4 @@
-package com.romeone.taskExample.controller;
+package com.romeone.springapp.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
