@@ -1,5 +1,6 @@
 package com.romeone.springapp.config;
 
+import com.romeone.springapp.security.UrlAuthenticationSuccessHandler;
 import com.romeone.springapp.security.jwt.AuthEntryPointJwt;
 import com.romeone.springapp.security.jwt.AuthTokenFilter;
 import com.romeone.springapp.security.services.UserDetailsServiceImpl;
@@ -11,10 +12,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 
 @Configuration
@@ -34,9 +36,35 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        // Enable CORS and disable CSRF
+        http = http.cors().and().csrf().disable();
+
+        // Set exception handling and session management
+        http.exceptionHandling()
+                .authenticationEntryPoint(unauthorizedHandler).and();
+
+        http.sessionManagement()
+                .invalidSessionUrl("/login")
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .maximumSessions(2).and();
+
+        http.authorizeRequests()
+                .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/", "/greeting", "/api/auth/**", "/api/test/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/greeting", true)
+                .successHandler(myAuthenticationSuccessHandler())
+                .permitAll()
+                .and()
+            .logout()
+                .logoutSuccessUrl("/")
+                .permitAll()
+                .and()
+            .httpBasic().and();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
@@ -44,26 +72,17 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public AuthTokenFilter authenticationJwtTokenFilter() {
-        return new AuthTokenFilter();
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
-                .antMatchers("/ignore1", "/ignore2", "/register")
-                .antMatchers("/api/auth/**")
-                .antMatchers("/api/test/**");
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+        return new UrlAuthenticationSuccessHandler();
     }
 
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsService() {
-//        log.error("RBLOG: in mem");
-//        UserDetails user = User.withDefaultPasswordEncoder()
-//                .username("user")
-//                .password("password")
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
 }
